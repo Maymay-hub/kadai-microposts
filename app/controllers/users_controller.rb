@@ -40,6 +40,12 @@ before_action :require_user_logged_in, only: [:index, :show, :followings, :follo
     counts(@user)
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @likes = @user.likes.page(params[:page])
+    counts(@user)
+  end
+
   private
 
   def user_params
